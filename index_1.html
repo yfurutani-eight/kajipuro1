@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>足立区の家事代行サービス「家事プロ」｜暮らしを、まるごと整える</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FBF6EF;
+    --bg-soft: #F5ECE1;
+    --card: #FFFFFF;
+    --mint: #C3E4D3;
+    --mint-dark: #8FC7AA;
+    --peach: #F5C7AC;
+    --peach-dark: #E7A47C;
+    --yellow: #F8E3A8;
+    --pink: #EFACA4;
+    --pink-dark: #E08A80;
+    --brown: #4A3D36;
+    --brown-soft: #8A7A70;
+    --line: #E7DACB;
+    --radius-lg: 32px;
+    --radius-md: 22px;
+    --shadow: 0 14px 30px -14px rgba(74,61,54,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--brown);
+    font-family:"Noto Sans JP", sans-serif;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:"Zen Maru Gothic", sans-serif;
+    font-weight:900;
+    letter-spacing:.02em;
+    margin:0;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- drawer motif (signature element) ---------- */
+  .drawer{
+    position:relative;
+    background:var(--card);
+    border-radius:var(--radius-md);
+    box-shadow:var(--shadow);
+    padding:38px 30px 30px;
+  }
+  .drawer::before{
+    content:"";
+    position:absolute;
+    top:14px;
+    left:50%;
+    transform:translateX(-50%);
+    width:52px;
+    height:8px;
+    border-radius:6px;
+    background:var(--line);
+    opacity:.9;
+  }
+  .drawer-frame{
+    position:relative;
+    border-radius:var(--radius-lg);
+    padding:14px;
+    background:linear-gradient(160deg, var(--bg-soft), var(--card));
+    box-shadow:var(--shadow);
+  }
+  .drawer-frame img{
+    border-radius: calc(var(--radius-lg) - 10px);
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .drawer-frame::after{
+    content:"";
+    position:absolute;
+    bottom:-10px;
+    left:50%;
+    transform:translateX(-50%);
+    width:64px;
+    height:10px;
+    border-radius:8px;
+    background:var(--peach);
+    opacity:.85;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:rgba(251,246,239,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 24px;
+    max-width:1080px;
+    margin:0 auto;
+  }
+  .logo{
+    font-family:"Zen Maru Gothic", sans-serif;
+    font-weight:900;
+    font-size:1.15rem;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .logo span.badge{
+    background:var(--mint);
+    color:var(--brown);
+    font-size:.68rem;
+    font-weight:700;
+    padding:4px 9px;
+    border-radius:999px;
+    letter-spacing:.05em;
+  }
+  .tel-mini{
+    font-size:.82rem;
+    color:var(--brown-soft);
+    display:none;
+  }
+  @media(min-width:640px){ .tel-mini{display:block;} }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:15px 30px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:.98rem;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn-primary{
+    background:var(--pink-dark);
+    color:#fff;
+    box-shadow:0 12px 24px -10px rgba(224,138,128,0.7);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 16px 28px -10px rgba(224,138,128,0.8); }
+  .btn-outline{
+    background:#fff;
+    color:var(--brown);
+    border:1.5px solid var(--line);
+  }
+  .btn-outline:hover{ transform:translateY(-2px); border-color:var(--peach-dark); }
+  .btn-map{
+    background:var(--mint-dark);
+    color:#fff;
+  }
+  .btn-map:hover{ transform:translateY(-2px); }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:64px 0 80px;
+    background:
+      radial-gradient(ellipse 700px 420px at 82% -10%, rgba(248,227,168,0.55), transparent 60%),
+      radial-gradient(ellipse 600px 400px at -10% 30%, rgba(195,228,211,0.55), transparent 60%);
+  }
+  .hero-grid{
+    display:grid;
+    gap:44px;
+    align-items:center;
+  }
+  @media(min-width:860px){
+    .hero-grid{grid-template-columns:1.05fr .95fr;}
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--mint);
+    color:var(--brown);
+    font-size:.78rem;
+    font-weight:700;
+    padding:7px 16px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(1.9rem, 4.4vw, 2.9rem);
+    line-height:1.5;
+    color:var(--brown);
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(180deg, transparent 55%, var(--yellow) 55%);
+  }
+  .hero p.lead{
+    margin-top:20px;
+    font-size:1.02rem;
+    color:var(--brown-soft);
+    max-width:46ch;
+  }
+  .hero-cta{
+    margin-top:30px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .hero-stats{
+    display:flex;
+    gap:26px;
+    margin-top:34px;
+    flex-wrap:wrap;
+  }
+  .stat b{
+    font-family:"Zen Maru Gothic", sans-serif;
+    font-size:1.5rem;
+    display:block;
+    color:var(--pink-dark);
+  }
+  .stat span{
+    font-size:.78rem;
+    color:var(--brown-soft);
+  }
+  .hero-frame{ aspect-ratio: 4/3.1; }
+
+  /* ---------- section shell ---------- */
+  section{ padding:74px 0; }
+  .section-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 46px;
+  }
+  .section-head .eyebrow{ background:var(--peach); }
+  .section-head h2{
+    font-size:clamp(1.5rem,3vw,2.05rem);
+    margin-top:10px;
+  }
+  .section-head p{
+    color:var(--brown-soft);
+    margin-top:14px;
+    font-size:.95rem;
+  }
+  .divider{
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--line), transparent);
+    border:none;
+    margin:0;
+  }
+
+  /* ---------- strengths ---------- */
+  .strengths{
+    background:var(--bg-soft);
+  }
+  .strength-grid{
+    display:grid;
+    gap:20px;
+    grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+  }
+  .strength-card{
+    padding:30px 24px 26px;
+  }
+  .strength-card .icon{
+    width:52px;height:52px;
+    border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.4rem;
+    margin-bottom:16px;
+  }
+  .strength-card:nth-child(1) .icon{ background:var(--mint); }
+  .strength-card:nth-child(2) .icon{ background:var(--peach); }
+  .strength-card:nth-child(3) .icon{ background:var(--yellow); }
+  .strength-card:nth-child(4) .icon{ background:var(--pink); }
+  .strength-card:nth-child(5) .icon{ background:var(--mint); }
+  .strength-card h3{
+    font-size:1.02rem;
+    margin-bottom:8px;
+  }
+  .strength-card p{
+    font-size:.88rem;
+    color:var(--brown-soft);
+    margin:0;
+  }
+
+  /* ---------- story ---------- */
+  .story-copy{
+    max-width:680px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .story-copy .eyebrow{ background:var(--yellow); }
+  .story-copy h2{
+    font-size:clamp(1.4rem,2.8vw,1.9rem);
+    margin-top:12px;
+  }
+  .story-copy p{
+    margin-top:18px;
+    color:var(--brown-soft);
+    font-size:.95rem;
+    text-align:left;
+  }
+  .signature-line{
+    margin-top:24px;
+    font-family:"Zen Maru Gothic", sans-serif;
+    font-weight:700;
+    color:var(--pink-dark);
+    font-size:.95rem;
+  }
+
+  /* ---------- service steps ---------- */
+  .service{
+    background:var(--bg-soft);
+  }
+  .service-top{
+    display:grid;
+    gap:40px;
+    align-items:center;
+    margin-bottom:52px;
+  }
+  @media(min-width:860px){
+    .service-top{ grid-template-columns:1.1fr .9fr; }
+  }
+  .service-frame{ aspect-ratio:4/3.4; }
+  .steps{
+    display:grid;
+    gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  }
+  .step-card{
+    padding:28px 22px 24px;
+    position:relative;
+  }
+  .step-card .num{
+    font-family:"Zen Maru Gothic", sans-serif;
+    font-weight:900;
+    font-size:.75rem;
+    color:#fff;
+    background:var(--pink-dark);
+    width:30px;height:30px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:14px;
+  }
+  .step-card h3{ font-size:.98rem; margin-bottom:8px; }
+  .step-card p{ font-size:.85rem; color:var(--brown-soft); margin:0; }
+  .step-plans{
+    margin-top:26px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .pill{
+    background:#fff;
+    border:1.5px solid var(--line);
+    border-radius:999px;
+    padding:9px 18px;
+    font-size:.82rem;
+    color:var(--brown-soft);
+  }
+
+  /* ---------- reviews ---------- */
+  .review-frame{
+    aspect-ratio:16/7;
+    margin-bottom:40px;
+  }
+  .review-grid{
+    display:grid;
+    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  }
+  .review-card{
+    padding:28px 24px 24px;
+  }
+  .stars{
+    color:var(--peach-dark);
+    letter-spacing:2px;
+    font-size:.95rem;
+    margin-bottom:12px;
+  }
+  .review-card p{
+    font-size:.87rem;
+    color:var(--brown-soft);
+    margin:0;
+  }
+
+  /* ---------- area / map ---------- */
+  .area{ background:var(--bg-soft); }
+  .area-grid{
+    display:grid;
+    gap:40px;
+  }
+  @media(min-width:860px){
+    .area-grid{ grid-template-columns:1fr 1fr; align-items:start; }
+  }
+  .map-card{
+    padding:16px;
+  }
+  .map-card iframe{
+    width:100%;
+    height:320px;
+    border:0;
+    border-radius:16px;
+    display:block;
+  }
+  .map-card .btn{ margin-top:16px; width:100%; justify-content:center; }
+  .area-info h3{ font-size:1.15rem; margin-bottom:16px; }
+  .info-line{
+    display:flex;
+    gap:14px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-size:.9rem;
+  }
+  .info-line:last-child{ border-bottom:none; }
+  .info-line b{
+    min-width:88px;
+    color:var(--pink-dark);
+    font-weight:700;
+  }
+  .area-frame{ margin-top:24px; aspect-ratio:16/9; }
+
+  /* ---------- contact ---------- */
+  .contact{
+    text-align:center;
+    background:
+      radial-gradient(ellipse 700px 400px at 50% 0%, rgba(245,199,172,0.4), transparent 60%);
+  }
+  .contact h2{
+    font-size:clamp(1.5rem,3vw,2.1rem);
+  }
+  .contact p{
+    color:var(--brown-soft);
+    margin-top:14px;
+    max-width:44ch;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .contact-links{
+    margin-top:32px;
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:44px 0 34px;
+    border-top:1px solid var(--line);
+  }
+  .footer-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:20px;
+    font-size:.82rem;
+    color:var(--brown-soft);
+  }
+  .footer-grid a{ text-decoration:none; }
+  .footer-links{ display:flex; gap:18px; flex-wrap:wrap; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">家事プロ <span class="badge">足立区</span></div>
+    <div style="display:flex;align-items:center;gap:18px;">
+      <span class="tel-mini">📞 050-5448-5213</span>
+      <a href="https://line.me/R/ti/p/%40226rgjas" class="btn btn-primary" style="padding:10px 20px;font-size:.85rem;">LINEで相談</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">足立区・都内近郊 出張対応</span>
+      <h1>家のことも、心のことも、<br><em>まるごと</em>整える。</h1>
+      <p class="lead">主婦歴23年・家事代行歴13年以上、清掃実績6,000件超。掃除・洗濯・料理・整理収納をオーダーメイドで組み合わせ、「帰りたくなる家」をつくるお手伝いをします。</p>
+      <div class="hero-cta">
+        <a href="https://line.me/R/ti/p/%40226rgjas" class="btn btn-primary">LINEで無料相談する</a>
+        <a href="#service" class="btn btn-outline">サービス内容を見る</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>13年+</b><span>家事代行の経験</span></div>
+        <div class="stat"><b>6,000件+</b><span>清掃実績</span></div>
+        <div class="stat"><b>★4.7</b><span>お客様評価</span></div>
+      </div>
+    </div>
+    <div class="drawer-frame hero-frame">
+      <img src="images/hero.jpg" alt="家事プロのスタッフが丁寧に掃除をしている様子">
+    </div>
+  </div>
+</section>
+
+<!-- ================= 選ばれる理由 ================= -->
+<section class="strengths">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">選ばれる理由</span>
+      <h2>ひとつの窓口で、暮らしのぜんぶに応える</h2>
+      <p>掃除だけ、片づけだけ、で終わらないのが家事プロの強みです。</p>
+    </div>
+    <div class="strength-grid">
+      <div class="drawer strength-card">
+        <div class="icon">🧺</div>
+        <h3>オーダーメイドの家事代行</h3>
+        <p>掃除・洗濯・料理・整理収納を、暮らしに合わせて短時間で組み合わせます。</p>
+      </div>
+      <div class="drawer strength-card">
+        <div class="icon">📦</div>
+        <h3>片づけから引っ越しまで</h3>
+        <p>家丸ごとの片づけ・断捨離・収納提案・荷造りや開梱、簡単な家具組み立てまで一括対応。</p>
+      </div>
+      <div class="drawer strength-card">
+        <div class="icon">🔁</div>
+        <h3>リバウンドを防ぐ収納</h3>
+        <p>物を全部出して仕分け、生活動線に合わせて定位置を決定。終了後は収納場所もご説明します。</p>
+      </div>
+      <div class="drawer strength-card">
+        <div class="icon">🏠</div>
+        <h3>施設・民泊にも対応</h3>
+        <p>個人宅はもちろん、民泊・貸別荘・シェアハウス・店舗の清掃やオーナー業務も支援します。</p>
+      </div>
+      <div class="drawer strength-card">
+        <div class="icon">📍</div>
+        <h3>足立区密着の柔軟対応</h3>
+        <p>足立区を中心に都内・千葉・埼玉へ訪問。定期・スポット・オンライン相談まで幅広く対応します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 代表ストーリー ================= -->
+<section>
+  <div class="wrap">
+    <div class="story-copy">
+      <span class="eyebrow">創業者ストーリー</span>
+      <h2>「誰かを頼ってもいい」<br>その一言から始まりました</h2>
+      <p>店長の松ケ野里美は、主婦として家事と子育てを経験しながら、13年以上にわたり掃除・洗濯・料理・片づけの技術を磨いてきました。2020年、足立区でフランチャイズ第一号店として開業し、その後独立。定期利用・スポット利用に応える地域密着型のサービスへと育ってきました。</p>
+      <p>「誰かを頼ってもよいと知っていれば、子育てや家族との時間をもっと大切にできたかもしれない」——そんな思いから、忙しさや苦手意識で後回しになりがちな家事に寄り添い、心と体の健康、そして帰りたくなる暮らしを支えています。</p>
+      <div class="signature-line">松ケ野里美（家事プロ 代表）</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= イチオシサービス ================= -->
+<section class="service" id="service">
+  <div class="wrap">
+    <div class="service-top">
+      <div class="drawer-frame service-frame">
+        <img src="images/organizing.jpg" alt="整理収納作業でクローゼットを整えている様子">
+      </div>
+      <div>
+        <span class="eyebrow">イチオシサービス</span>
+        <h2 style="font-size:clamp(1.4rem,2.8vw,1.9rem);margin-top:12px;">オーダーメイド整理収納サービス</h2>
+        <p style="margin-top:16px;color:var(--brown-soft);font-size:.95rem;">掃除と片づけを分けず、生活動線まで見直して家全体を整えます。物を移動するだけでなく、自分で維持しやすい「帰りたくなる」空間を一緒につくります。</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="drawer step-card">
+        <div class="num">1</div>
+        <h3>全部出す</h3>
+        <p>片づけたい場所の物をすべて出し、状態を確認します。</p>
+      </div>
+      <div class="drawer step-card">
+        <div class="num">2</div>
+        <h3>仕分ける</h3>
+        <p>利用者様と一緒に要・不要をひとつずつ仕分けていきます。</p>
+      </div>
+      <div class="drawer step-card">
+        <div class="num">3</div>
+        <h3>定位置を決める</h3>
+        <p>使用頻度や暮らし方に合わせて、物の置き場所を決定します。</p>
+      </div>
+      <div class="drawer step-card">
+        <div class="num">4</div>
+        <h3>説明して終了</h3>
+        <p>収納場所をご説明し、ビフォーアフターを一緒に確認します。</p>
+      </div>
+    </div>
+
+    <div class="step-plans">
+      <span class="pill">少しずつ進める個別プラン</span>
+      <span class="pill">4名チームで一日完結プラン</span>
+      <span class="pill">遠方向けオンラインレッスン</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= お客様の声 ================= -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">お客様の声</span>
+      <h2>ご依頼いただいた方から</h2>
+    </div>
+    <div class="drawer-frame review-frame">
+      <img src="images/tidy-room.jpg" alt="整理収納作業で整った部屋の様子">
+    </div>
+    <div class="review-grid">
+      <div class="drawer review-card">
+        <div class="stars">★★★★☆</div>
+        <p>初回の慣れない現場でもテキパキと作業してくださり、とても綺麗にしていただきました。ソファ下の細かい取り残しはありましたが、それ以外はとても満足で、引き続きお願いしています。</p>
+      </div>
+      <div class="drawer review-card">
+        <div class="stars">★★★★☆</div>
+        <p>生活動線に合わせたレイアウトと片づけをお願いしました。引き出しの中まで丁寧に整えていただき、今後の収納アドバイスまでいただけて頼りになりました。</p>
+      </div>
+      <div class="drawer review-card">
+        <div class="stars">★★★★★</div>
+        <p>部屋の片づけから水回りの掃除まで、2人体制で徹底的にきれいにしていただきました。段取りよく動いてくださり、見違えるほどの仕上がりで感激しました。</p>
+      </div>
+      <div class="drawer review-card">
+        <div class="stars">★★★★★</div>
+        <p>姪の家具の組み立てをお願いしました。丁寧な対応で安心してお任せでき、家具のレイアウトまで考え直していただけたのが嬉しかったです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 対応エリア / マップ ================= -->
+<section class="area">
+  <div class="wrap area-grid">
+    <div class="drawer map-card">
+      <iframe
+        src="https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E8%B6%B3%E7%AB%8B%E5%8C%BA%E4%B8%AD%E5%A4%AE%E6%9C%AC%E7%94%BA%EF%BC%92%E4%B8%81%E7%9B%AE%EF%BC%94%E2%88%928&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="家事プロ 所在地マップ">
+      </iframe>
+      <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E8%B6%B3%E7%AB%8B%E5%8C%BA%E4%B8%AD%E5%A4%AE%E6%9C%AC%E7%94%BA%EF%BC%92%E4%B8%81%E7%9B%AE%EF%BC%94%E2%88%928" target="_blank" rel="noopener">📍 地図を開く</a>
+    </div>
+    <div class="area-info">
+      <span class="eyebrow" style="background:var(--pink);">対応エリア</span>
+      <h3 style="margin-top:14px;">足立区を中心に、都内・近郊へ</h3>
+      <div class="info-line"><b>住所</b><span>東京都足立区中央本町２丁目４−８</span></div>
+      <div class="info-line"><b>電話番号</b><span>050-5448-5213</span></div>
+      <div class="info-line"><b>対応エリア</b><span>足立区全域を中心に東京都内・千葉県・埼玉県</span></div>
+      <div class="info-line"><b>営業形態</b><span>定期利用・スポット利用・不在時利用・オンライン相談</span></div>
+      <div class="drawer-frame area-frame">
+        <img src="images/area.jpg" alt="足立区の住宅街のイメージ写真">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= お問い合わせ ================= -->
+<section class="contact">
+  <div class="wrap">
+    <span class="eyebrow" style="background:var(--yellow);">お問い合わせ</span>
+    <h2 style="margin-top:14px;">まずは、気になることから<br>気軽にご相談ください</h2>
+    <p>お見積もりやご相談は無料です。LINE・お電話・Instagramからお気軽にどうぞ。</p>
+    <div class="contact-links">
+      <a href="https://line.me/R/ti/p/%40226rgjas" class="btn btn-primary">LINEで相談する</a>
+      <a href="tel:0505448-5213" class="btn btn-outline">📞 050-5448-5213</a>
+      <a href="https://www.instagram.com/happykaji2020/" class="btn btn-outline" target="_blank" rel="noopener">Instagramを見る</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="logo" style="margin-bottom:8px;">家事プロ</div>
+      <div>足立区の家事代行サービス「家事プロ」<br>東京都足立区中央本町２丁目４−８</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://happykaji.happytry.info/" target="_blank" rel="noopener">公式サイト</a>
+      <a href="https://www.instagram.com/happykaji2020/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://line.me/R/ti/p/%40226rgjas" target="_blank" rel="noopener">LINEお問い合わせ</a>
+      <a href="https://happykaji-recruit.happytry.info/" target="_blank" rel="noopener">求人情報</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
